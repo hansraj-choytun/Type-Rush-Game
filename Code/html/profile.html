@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile — TypeRush</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">Type<span>Rush</span></h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="howtoplay.html">How to Play</a></li>
+        <li><a id="openLeaderboard">Rankings</a></li>
+        <li><a href="profile.html" class="active">Profile</a></li>
+        <li><a id="openSettings">⚙️</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="welcomeMessage" class="welcome-message"></div>
+
+  <main class="page-content">
+    <section class="profile-page">
+      <h2>🏴‍☠️ Player Profile</h2>
+      <p class="profile-intro">Your pirate record, voyage stats, and achievements.</p>
+
+      <div class="profile-grid">
+
+        <div class="profile-card">
+          <h3>👤 Account Details</h3>
+          <div id="profilePageDetails">
+            <p>Please <a href="index.html" style="color:var(--gold);">log in</a> to view your profile.</p>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <h3>📊 Voyage Stats</h3>
+          <div id="profileStats">
+            <p><strong>Games Played</strong> <span>0</span></p>
+            <p><strong>Highest Score</strong> <span>0</span></p>
+            <p><strong>Best WPM</strong>      <span>0</span></p>
+            <p><strong>Best Accuracy</strong> <span>0%</span></p>
+          </div>
+        </div>
+
+        <div class="profile-card">
+          <h3>🎖️ Achievements</h3>
+          <div class="achievement-list">
+            <p>⚡ Speed Starter — Play your first game</p>
+            <p>🎯 Sharp Typer — Reach 90% accuracy</p>
+            <p>🔥 Combo Rookie — Build a typing streak</p>
+            <p>🏆 Sea Champion — Reach 5000 score</p>
+            <p>💀 Grand Line King — Hit 100 WPM</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- LEADERBOARD MODAL -->
+  <div class="modal-overlay" id="leaderboardModal">
+    <div class="modal leaderboard-modal">
+      <div class="modal-header centered">
+        <h2>🏆 Leaderboard</h2>
+        <button class="modal-close" id="closeLeaderboard">&times;</button>
+      </div>
+      <table class="leaderboard-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Pirate</th>
+            <th>Level</th>
+            <th>WPM</th>
+            <th>Accuracy</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SETTINGS MODAL -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal">
+      <button class="modal-close" id="closeSettings">&times;</button>
+      <div class="modal-header"><h2>⚙️ Settings</h2></div>
+      <div class="settings-list">
+        <button class="btn full-btn" id="soundToggle">🔇 Sound Off</button>
+        <button class="btn btn-outline full-btn" id="brightnessToggle">🌙 Toggle Brightness</button>
+        <button class="btn btn-outline full-btn" id="openTerms">📜 Terms &amp; Conditions</button>
+        <div class="how-to-play">
+          <h3>Quick Instructions</h3>
+          <p>Start the game and type the displayed text as fast and accurately as you can.</p>
+          <p>Your score is based on WPM, accuracy, and combo bonuses.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button id="logoutBtn" class="logout-floating" style="display:none;">Logout</button>
+
+  <footer><p>© 2026 TypeRush — made by Ad</p></footer>
+
+  <audio id="bgMusic" loop><source src="../assets/audio/background_music.mp3" type="audio/mp3" /></audio>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/leaderboard.js"></script>
+  <script src="../js/profile.js"></script>
+</body>
+</html>

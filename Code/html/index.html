@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TypeRush — One Piece Typing Challenge</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">Type<span>Rush</span></h1>
+      <ul class="nav-links">
+        <li><a href="index.html" class="active">Home</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="howtoplay.html">How to Play</a></li>
+        <li><a id="openLeaderboard">Rankings</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a id="openSettings">⚙️</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="welcomeMessage" class="welcome-message"></div>
+
+  <!-- ================= PAGE CONTENT ================= -->
+  <main class="page-content">
+
+    <section class="hero">
+      <p class="hero-eyebrow">⚓ Grand Line Typing Challenge</p>
+      <h2>Become The Fastest<br><span class="highlight">TypeRush</span> Pirate</h2>
+      <p>Sharpen your blade on the keyboard. Earn your bounty. Conquer the Grand Line.</p>
+      <div class="hero-buttons">
+        <a href="game.html" class="btn">⚔️ Start Voyage</a>
+        <button class="btn btn-outline" id="openLogin">🔑 Login</button>
+      </div>
+    </section>
+
+    <section class="features">
+      <div class="feature-card">
+        <span class="feature-icon">⚡</span>
+        <h3>Live WPM</h3>
+        <p>Track your typing speed in real time as you battle through the text.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎯</span>
+        <h3>Accuracy</h3>
+        <p>Every keystroke counts. A true pirate never misses their mark.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🏆</span>
+        <h3>Rankings</h3>
+        <p>Compete against the best typists and claim the top bounty.</p>
+      </div>
+      <div class="feature-card">
+        <span class="feature-icon">🎮</span>
+        <h3>Game Modes</h3>
+        <p>Intense level-based typing battles that push your limits.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= LOGIN MODAL ================= -->
+  <div class="modal-overlay" id="loginModal">
+    <div class="auth-modal">
+      <button class="modal-close" id="closeLogin">&times;</button>
+      <h2>Welcome Back</h2>
+      <p class="auth-subtitle">Log in to continue your pirate typing adventure.</p>
+
+      <form id="loginForm" novalidate>
+        <div class="form-group">
+          <label for="loginUsername">Username</label>
+          <input type="text" id="loginUsername" placeholder="Enter your username" autocomplete="off" />
+          <p class="field-hint hint-username"></p>
+        </div>
+        <div class="form-group">
+          <label for="loginPassword">Password</label>
+          <div class="password-wrapper">
+            <input type="password" id="loginPassword" placeholder="Enter your password" />
+            <button type="button" class="password-eye" data-target="loginPassword" aria-label="Show password">👁️</button>
+          </div>
+          <p class="field-hint hint-password"></p>
+        </div>
+        <p class="form-message"></p>
+        <button type="submit" class="btn auth-btn">Log In ⚔️</button>
+      </form>
+
+      <p class="auth-switch-text">No account? <span id="showRegister">Register here</span></p>
+    </div>
+  </div>
+
+  <!-- ================= REGISTER MODAL ================= -->
+  <div class="modal-overlay" id="registerModal">
+    <div class="auth-modal">
+      <button class="modal-close" id="closeRegister">&times;</button>
+      <h2>Join the Crew</h2>
+      <p class="auth-subtitle">Create your account and start your voyage.</p>
+
+      <!-- Step indicator -->
+      <div class="step-indicator">
+        <div class="step-dot active" id="stepDot1"></div>
+        <div class="step-dot" id="stepDot2"></div>
+      </div>
+
+      <form id="registerForm" novalidate>
+
+        <!-- Step 1 -->
+        <div class="register-step active" id="registerStep1">
+          <div class="form-group">
+            <label for="firstName">First Name</label>
+            <input type="text" id="firstName" placeholder="Enter first name" autocomplete="off" />
+            <p class="field-hint" id="hintFirstName"></p>
+          </div>
+          <div class="form-group">
+            <label for="surname">Surname</label>
+            <input type="text" id="surname" placeholder="Enter surname" autocomplete="off" />
+            <p class="field-hint" id="hintSurname"></p>
+          </div>
+          <div class="form-group">
+            <label for="age">Age</label>
+            <input type="number" id="age" placeholder="Age (12–100)" min="12" max="100" />
+            <p class="field-hint" id="hintAge"></p>
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="you@example.com" autocomplete="off" />
+            <p class="field-hint" id="hintEmail"></p>
+          </div>
+          <p class="form-message" id="registerStepMessage"></p>
+          <button type="button" class="btn auth-btn" id="nextRegisterStep">Next →</button>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="register-step" id="registerStep2">
+          <div class="form-group">
+            <label for="registerUsername">Username</label>
+            <input type="text" id="registerUsername" placeholder="Choose a username" autocomplete="off" />
+            <p class="field-hint" id="hintUsername"></p>
+          </div>
+          <div class="form-group">
+            <label for="registerPassword">Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="registerPassword" placeholder="Create a password" />
+              <button type="button" class="password-eye" data-target="registerPassword" aria-label="Show password">👁️</button>
+            </div>
+            <p class="field-hint" id="hintPassword"></p>
+          </div>
+          <div class="form-group">
+            <label for="confirmPassword">Confirm Password</label>
+            <div class="password-wrapper">
+              <input type="password" id="confirmPassword" placeholder="Confirm your password" />
+              <button type="button" class="password-eye" data-target="confirmPassword" aria-label="Show password">👁️</button>
+            </div>
+            <p class="field-hint" id="hintConfirm"></p>
+          </div>
+          <p class="form-message" id="registerFinalMessage"></p>
+          <div class="register-actions">
+            <button type="button" class="btn btn-outline" id="backRegisterStep">← Back</button>
+            <button type="submit" class="btn">Create Account</button>
+          </div>
+        </div>
+
+      </form>
+
+      <p class="auth-switch-text">Already a pirate? <span id="showLogin">Log in here</span></p>
+    </div>
+  </div>
+
+  <!-- ================= LEADERBOARD MODAL ================= -->
+  <div class="modal-overlay" id="leaderboardModal">
+    <div class="modal leaderboard-modal">
+      <div class="modal-header centered">
+        <h2>🏆 Leaderboard</h2>
+        <button class="modal-close" id="closeLeaderboard">&times;</button>
+      </div>
+      <table class="leaderboard-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Pirate</th>
+            <th>Level</th>
+            <th>WPM</th>
+            <th>Accuracy</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ================= SETTINGS MODAL ================= -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal">
+      <button class="modal-close" id="closeSettings">&times;</button>
+      <div class="modal-header"><h2>⚙️ Settings</h2></div>
+      <div class="settings-list">
+        <button class="btn full-btn" id="soundToggle">🔇 Sound Off</button>
+        <button class="btn btn-outline full-btn" id="brightnessToggle">🌙 Toggle Brightness</button>
+        <button class="btn btn-outline full-btn" id="openTerms">📜 Terms &amp; Conditions</button>
+        <div class="how-to-play">
+          <h3>Quick Instructions</h3>
+          <p>Start the game and type the displayed text as fast and accurately as you can.</p>
+          <p>Your score is based on WPM, accuracy, and combo bonuses. Visit <a href="./howtoplay.html" style="color:var(--gold);">How to Play</a> for the full guide.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= PROFILE MODAL ================= -->
+  <div class="modal-overlay" id="profileModal">
+    <div class="modal">
+      <button class="modal-close" id="closeProfile">&times;</button>
+      <div class="modal-header centered"><h2>👤 Player Profile</h2></div>
+      <div id="profileDetails" class="profile-details"></div>
+    </div>
+  </div>
+
+  <button id="logoutBtn" class="logout-floating" style="display:none;">Logout</button>
+
+  <footer><p>© 2026 TypeRush — made by Ad</p></footer>
+
+  <audio id="bgMusic" loop><source src="../assets/audio/background_music.mp3" type="audio/mp3" /></audio>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/leaderboard.js"></script>
+</body>
+</html>

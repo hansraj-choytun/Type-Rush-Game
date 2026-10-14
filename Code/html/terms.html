@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Terms &amp; Conditions — TypeRush</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body>
+
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">Type<span>Rush</span></h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="game.html">Game</a></li>
+        <li><a href="howtoplay.html">How to Play</a></li>
+        <li><a id="openLeaderboard">Rankings</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a id="openSettings">⚙️</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="welcomeMessage" class="welcome-message"></div>
+
+  <main class="page-content">
+    <section class="terms-page">
+
+      <h2>📜 Terms &amp; Conditions</h2>
+      <p class="terms-date">Last updated: May 2026 &nbsp;|&nbsp; TypeRush Pirate Typing Challenge</p>
+
+      <div class="terms-section">
+        <h3>1. Acceptance of Terms</h3>
+        <p>By accessing or playing TypeRush, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you must not use the game. Continued use of the game constitutes acceptance of any future updates to these terms.</p>
+      </div>
+
+      <div class="terms-section">
+        <h3>2. Age Requirement</h3>
+        <p>You must be at least <strong style="color:var(--gold);">12 years of age</strong> to register and play TypeRush. By registering, you confirm that you meet this requirement. Players over the age of 100 are also not permitted to register. We reserve the right to terminate accounts found in violation of this rule.</p>
+      </div>
+
+      <div class="terms-section">
+        <h3>3. User Accounts</h3>
+        <p>When creating an account, you agree to:</p>
+        <ul>
+          <li>Provide accurate and truthful personal information</li>
+          <li>Choose a username that is not offensive, misleading, or impersonating another person</li>
+          <li>Keep your password secure and not share it with others</li>
+          <li>Notify us immediately if you suspect unauthorised use of your account</li>
+        </ul>
+      </div>
+
+      <div class="terms-section">
+        <h3>4. Fair Play</h3>
+        <p>TypeRush is a competitive typing game. You agree to:</p>
+        <ul>
+          <li>Play honestly and not use automated tools, macros, or scripts to generate scores</li>
+          <li>Not attempt to manipulate the leaderboard through any artificial means</li>
+          <li>Not attempt to hack, exploit, or disrupt the game or other players' experience</li>
+          <li>Accept that any scores obtained through unfair means may be removed</li>
+        </ul>
+      </div>
+
+      <div class="terms-section">
+        <h3>5. Data &amp; Privacy</h3>
+        <p>TypeRush stores your account data (name, username, email, age, scores) locally in your browser using localStorage. This data is:</p>
+        <ul>
+          <li>Not transmitted to any external server</li>
+          <li>Stored only on your device</li>
+          <li>Removable at any time by clearing your browser storage</li>
+        </ul>
+        <p>By registering, you consent to this local storage of your data for the purpose of running the game.</p>
+      </div>
+
+      <div class="terms-section">
+        <h3>6. Intellectual Property</h3>
+        <p>The TypeRush name, logo, and all associated design elements are the property of their creators. One Piece is a trademark of Eiichiro Oda / Shueisha. TypeRush is a fan-made educational project and is not affiliated with or endorsed by the One Piece franchise.</p>
+      </div>
+
+      <div class="terms-section">
+        <h3>7. Acceptable Use</h3>
+        <p>You agree not to use TypeRush to:</p>
+        <ul>
+          <li>Harass, abuse, or harm other users</li>
+          <li>Post or submit offensive, illegal, or harmful content</li>
+          <li>Attempt to gain unauthorised access to any part of the game</li>
+        </ul>
+      </div>
+
+      <div class="terms-section">
+        <h3>8. Limitation of Liability</h3>
+        <p>TypeRush is provided as-is for educational and entertainment purposes. We make no guarantees regarding uptime, data retention, or performance. We are not liable for any data loss, technical issues, or damages arising from use of the game.</p>
+      </div>
+
+      <div class="terms-section">
+        <h3>9. Changes to Terms</h3>
+        <p>We reserve the right to update these Terms and Conditions at any time. Continued use of TypeRush after changes are posted constitutes your acceptance of the revised terms.</p>
+      </div>
+
+      <div class="terms-section">
+        <h3>10. Contact</h3>
+        <p>If you have any questions about these Terms and Conditions, please reach out via the TypeRush project channels.</p>
+      </div>
+
+      <!-- AGREE BOX -->
+      <div class="terms-agree-box">
+        <label>
+          <input type="checkbox" id="termsCheckbox" />
+          I have read and agree to the TypeRush Terms &amp; Conditions
+        </label>
+        <button class="btn terms-agree-btn" id="agreeBtn" disabled>Agree &amp; Continue</button>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- LEADERBOARD MODAL -->
+  <div class="modal-overlay" id="leaderboardModal">
+    <div class="modal leaderboard-modal">
+      <div class="modal-header centered">
+        <h2>🏆 Leaderboard</h2>
+        <button class="modal-close" id="closeLeaderboard">&times;</button>
+      </div>
+      <table class="leaderboard-table">
+        <thead>
+          <tr>
+            <th>Rank</th>
+            <th>Pirate</th>
+            <th>Level</th>
+            <th>WPM</th>
+            <th>Accuracy</th>
+            <th>Score</th>
+          </tr>
+        </thead>
+        <tbody id="leaderboardBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SETTINGS MODAL -->
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal">
+      <button class="modal-close" id="closeSettings">&times;</button>
+      <div class="modal-header"><h2>⚙️ Settings</h2></div>
+      <div class="settings-list">
+        <button class="btn full-btn" id="soundToggle">🔇 Sound Off</button>
+        <button class="btn btn-outline full-btn" id="brightnessToggle">🌙 Toggle Brightness</button>
+        <button class="btn btn-outline full-btn" id="openTerms">📜 Terms &amp; Conditions</button>
+        <div class="how-to-play">
+          <h3>Quick Instructions</h3>
+          <p>Start the game and type the displayed text as fast and accurately as you can.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <button id="logoutBtn" class="logout-floating" style="display:none;">Logout</button>
+
+  <footer><p>© 2026 TypeRush — made by Ad</p></footer>
+
+  <audio id="bgMusic" loop><source src="../assets/audio/background_music.mp3" type="audio/mp3" /></audio>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/leaderboard.js"></script>
+  <script src="../js/terms.js"></script>
+  
+</body>
+</html>

@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game — TypeRush</title>
+  <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+  <!-- ================= NAVBAR ================= -->
+  <header>
+    <nav class="navbar">
+      <h1 class="logo">Type<span>Rush</span></h1>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="game.html" class="active">Game</a></li>
+        <li><a href="howtoplay.html">How to Play</a></li>
+        <li><a id="openLeaderboard">Rankings</a></li>
+        <li><a href="profile.html">Profile</a></li>
+        <li><a id="openSettings">⚙️</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div id="welcomeMessage" class="welcome-message"></div>
+
+  <!-- ================= MAIN GAME ================= -->
+  <main class="page-content">
+    <section class="game-section">
+
+      <!-- ── SCREEN 1: Level Select ── -->
+      <div id="screenLevelSelect" class="level-select">
+        <h2>Choose Your Voyage</h2>
+        <p>Complete each level to unlock the next. You need 300+ points to advance.</p>
+
+        <div class="level-cards">
+
+          <!-- Level 1 -->
+          <div class="level-card" id="cardLevel1">
+            <span class="level-icon">🖼️</span>
+            <div class="level-num">Level 1</div>
+            <div class="level-title">Image Typing</div>
+            <div class="level-desc">
+              A word appears as an image — type exactly what you see. One word at a time. Spell it right!
+            </div>
+            <div class="level-req">5 mistakes allowed · Min 300 pts to advance</div>
+          </div>
+
+          <!-- Level 2 -->
+          <div class="level-card locked" id="cardLevel2">
+            <div class="lock-badge">🔒</div>
+            <span class="level-icon">📜</span>
+            <div class="level-num">Level 2</div>
+            <div class="level-title">Paragraph Race</div>
+            <div class="level-desc">
+              Type a full paragraph as fast and accurately as possible. Green letters = correct, red = wrong.
+            </div>
+            <div class="level-req">Requires 300 pts from Level 1 · Min 500 pts to advance</div>
+          </div>
+
+          <!-- Level 3 -->
+          <div class="level-card locked" id="cardLevel3">
+            <div class="lock-badge">🔒</div>
+            <span class="level-icon">🎧</span>
+            <div class="level-num">Level 3</div>
+            <div class="level-title">Audio Dictation</div>
+            <div class="level-desc">
+              Listen to a recording and type what you hear in real time. The ultimate pirate challenge.
+            </div>
+            <div class="level-req">Requires 500 pts from Level 2</div>
+          </div>
+
+        </div>
+
+        <div id="progressSummary" style="color:var(--text-muted);font-size:13px;"></div>
+      </div>
+
+      <!-- ── SCREEN 2: Game Arena ── -->
+      <div id="screenGame" class="game-arena hidden">
+
+        <div class="game-header">
+          <div class="game-title" id="gameTitle">Level 1 — Image Typing</div>
+          <button class="back-btn" id="backToLevels">← Levels</button>
+        </div>
+
+        <!-- Level progress bar -->
+        <div class="level-progress-bar">
+          <div class="level-progress-fill" id="levelProgressFill" style="width:0%"></div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <div class="stat-label">⏱ Time</div>
+            <div class="stat-value" id="statTime">45</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">⚡ WPM</div>
+            <div class="stat-value" id="statWpm">0</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">🎯 Accuracy</div>
+            <div class="stat-value" id="statAccuracy">100%</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-label">💰 Score</div>
+            <div class="stat-value" id="statScore">0</div>
+          </div>
+        </div>
+
+        <!-- Mistakes / hearts -->
+        <div class="mistake-row">
+          <span>Lives</span>
+          <span class="heart" id="h1">❤️</span>
+          <span class="heart" id="h2">❤️</span>
+          <span class="heart" id="h3">❤️</span>
+          <span class="heart" id="h4">❤️</span>
+          <span class="heart" id="h5">❤️</span>
+        </div>
+
+        <!-- Streak -->
+        <div class="streak-badge hidden" id="streakBadge">
+          🔥 <span id="streakCount">0</span> streak — +<span id="streakBonus">0</span> bonus
+        </div>
+
+        <!-- ── LEVEL 1: image area ── -->
+        <div id="l1Area" class="hidden">
+          <div class="image-frame game-graphic-frame"><div class="corner corner-tl">☠️</div><div class="corner corner-tr">⚓</div><div class="image-area" id="imageArea">
+            <div class="img-placeholder">
+              <div class="img-icon">🖼️</div>
+              <p>Press Start to load image</p>
+            </div>
+          </div><div class="corner corner-bl">🗺️</div><div class="corner corner-br">💰</div></div>
+          <div class="img-progress" id="imgProgress">Image 0 / 10</div>
+        </div>
+
+        <!-- ── LEVEL 2: text display ── -->
+        <div id="l2Area" class="hidden">
+          <div class="text-display" id="textDisplay"></div>
+        </div>
+
+        <!-- ── LEVEL 3: audio area ── -->
+        <div id="l3Area" class="hidden">
+          <div class="audio-area">
+            <div class="audio-wave" id="audioWave">
+              <div class="wave-bar paused"></div>
+              <div class="wave-bar paused"></div>
+              <div class="wave-bar paused"></div>
+              <div class="wave-bar paused"></div>
+              <div class="wave-bar paused"></div>
+              <div class="wave-bar paused"></div>
+              <div class="wave-bar paused"></div>
+              <div class="wave-bar paused"></div>
+              <div class="wave-bar paused"></div>
+            </div>
+            <div class="audio-label" id="audioLabel">Press Play to start the recording</div>
+            <div class="audio-controls">
+              <button class="audio-btn" id="audioPlayBtn">▶ Play Recording</button>
+              <button class="audio-btn" id="audioReplayBtn">↩ Replay</button>
+            </div>
+            <div class="audio-status" id="audioStatus"></div>
+          </div>
+          <!-- Hidden audio element — swap src for your actual file -->
+          <audio id="gameAudio" src="../assets/audio/dictation_level3.mp3"></audio>
+          <div class="transcript-area" id="transcriptArea"></div>
+        </div>
+
+        <!-- Typing input -->
+        <input
+          type="text"
+          class="game-input"
+          id="gameInput"
+          placeholder="Press Start, then type here…"
+          disabled
+          autocomplete="off"
+          autocorrect="off"
+          autocapitalize="off"
+          spellcheck="false"
+        >
+
+        <!-- Actions -->
+        <div class="game-actions">
+          <button class="btn" id="startBtn">⚓ Start</button>
+          <button class="btn btn-outline" id="resetBtn">🔄 Reset</button>
+        </div>
+
+      </div>
+
+      <!-- ── SCREEN 3: Result ── -->
+      <div id="screenResult" class="result-screen hidden">
+        <h2 id="resultTitle">Voyage Complete!</h2>
+        <div class="result-image-wrapper">
+          <img
+              id="resultImage"
+              class="result-image"
+              src=""
+              alt="Result Screen"
+          />
+      </div>
+        <p class="result-subtitle" id="resultSubtitle"></p>
+
+        <div class="rank-display" id="rankDisplay"></div>
+
+        <div class="result-grid">
+          <div class="result-stat"><div class="r-label">WPM</div><div class="r-value" id="rWpm">0</div></div>
+          <div class="result-stat"><div class="r-label">Accuracy</div><div class="r-value" id="rAcc">0%</div></div>
+          <div class="result-stat"><div class="r-label">Score</div><div class="r-value" id="rScore">0</div></div>
+          <div class="result-stat"><div class="r-label">Mistakes</div><div class="r-value" id="rMistakes">0</div></div>
+          <div class="result-stat"><div class="r-label">Streak Bonus</div><div class="r-value" id="rBonus">0</div></div>
+          <div class="result-stat"><div class="r-label">Time</div><div class="r-value" id="rTime">45s</div></div>
+        </div>
+
+        <div class="result-msg" id="resultMsg"></div>
+
+        <div class="result-actions">
+          <button class="btn" id="resultNextBtn">Next Level →</button>
+          <button class="btn btn-outline" id="resultRetryBtn">↩ Retry</button>
+          <button class="btn btn-outline" id="resultMenuBtn">☰ Menu</button>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- ================= MODALS (unchanged) ================= -->
+  <div class="modal-overlay" id="leaderboardModal">
+    <div class="modal leaderboard-modal">
+      <div class="modal-header centered">
+        <h2>🏆 Leaderboard</h2>
+        <button class="modal-close" id="closeLeaderboard">&times;</button>
+      </div>
+      <table class="leaderboard-table">
+        <thead><tr><th>Rank</th><th>Pirate</th><th>Level</th><th>WPM</th><th>Accuracy</th><th>Score</th></tr></thead>
+        <tbody id="leaderboardBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="settingsModal">
+    <div class="modal">
+      <button class="modal-close" id="closeSettings">&times;</button>
+      <div class="modal-header"><h2>⚙️ Settings</h2></div>
+      <div class="settings-list">
+        <button class="btn full-btn" id="soundToggle">🔇 Sound Off</button>
+        <button class="btn btn-outline full-btn" id="brightnessToggle">🌙 Toggle Brightness</button>
+        <button class="btn btn-outline full-btn" id="openTerms">📜 Terms &amp; Conditions</button>
+        <div class="how-to-play">
+          <h3>Quick Instructions</h3>
+          <p>Select a level and type the displayed content as fast and accurately as you can.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="profileModal">
+    <div class="modal">
+      <button class="modal-close" id="closeProfile">&times;</button>
+      <div class="modal-header centered"><h2>👤 Player Profile</h2></div>
+      <div id="profileDetails" class="profile-details"></div>
+    </div>
+  </div>
+
+  <button id="logoutBtn" class="logout-floating" style="display:none;">Logout</button>
+
+  <footer><p>© 2026 TypeRush — made by Ad</p></footer>
+
+  <audio id="bgMusic" loop><source src="../assets/audio/background_music.mp3" type="audio/mp3"></audio>
+
+  <script src="../js/main.js"></script>
+  <script src="../js/auth.js"></script>
+  <script src="../js/leaderboard.js"></script>
+  <script type="module" src="../js/game.js"></script>
+</body>
+</html>
